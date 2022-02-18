@@ -10,12 +10,18 @@
 		F4C4298727BCAEE1007EACDC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C4298627BCAEE1007EACDC /* AppDelegate.swift */; };
 		F4C4298927BCAEE1007EACDC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C4298827BCAEE1007EACDC /* SceneDelegate.swift */; };
 		F4C4298B27BCAEE1007EACDC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C4298A27BCAEE1007EACDC /* ViewController.swift */; };
-		F4C4298E27BCAEE1007EACDC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4C4298C27BCAEE1007EACDC /* Main.storyboard */; };
 		F4C4299027BCAEE3007EACDC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4C4298F27BCAEE3007EACDC /* Assets.xcassets */; };
 		F4C4299327BCAEE3007EACDC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4C4299127BCAEE3007EACDC /* LaunchScreen.storyboard */; };
 		F4C4299E27BCAEE3007EACDC /* weather_uiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C4299D27BCAEE3007EACDC /* weather_uiTests.swift */; };
 		F4C429A827BCAEE3007EACDC /* weather_uiUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C429A727BCAEE3007EACDC /* weather_uiUITests.swift */; };
 		F4C429AA27BCAEE3007EACDC /* weather_uiUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C429A927BCAEE3007EACDC /* weather_uiUITestsLaunchTests.swift */; };
+		F4F4777927BF67D0007EC68D /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F4777827BF67D0007EC68D /* HomeViewModel.swift */; };
+		F4F4777C27BF683F007EC68D /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F4777B27BF683F007EC68D /* Point.swift */; };
+		F4F4777F27BF6863007EC68D /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F4777E27BF6863007EC68D /* WeatherService.swift */; };
+		F4F4778127BF6871007EC68D /* ServiceUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F4778027BF6871007EC68D /* ServiceUtils.swift */; };
+		F4F4778427BF6889007EC68D /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = F4F4778327BF6889007EC68D /* SwiftyJSON */; };
+		F4F4778727BF68CE007EC68D /* CLLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F4778627BF68CE007EC68D /* CLLocationManager.swift */; };
+		F4F4778927BF6C45007EC68D /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F4778827BF6C45007EC68D /* Errors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +46,6 @@
 		F4C4298627BCAEE1007EACDC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F4C4298827BCAEE1007EACDC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		F4C4298A27BCAEE1007EACDC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		F4C4298D27BCAEE1007EACDC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F4C4298F27BCAEE3007EACDC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F4C4299227BCAEE3007EACDC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F4C4299427BCAEE3007EACDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +54,12 @@
 		F4C429A327BCAEE3007EACDC /* weather-uiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "weather-uiUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4C429A727BCAEE3007EACDC /* weather_uiUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weather_uiUITests.swift; sourceTree = "<group>"; };
 		F4C429A927BCAEE3007EACDC /* weather_uiUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weather_uiUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F4F4777827BF67D0007EC68D /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		F4F4777B27BF683F007EC68D /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
+		F4F4777E27BF6863007EC68D /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
+		F4F4778027BF6871007EC68D /* ServiceUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceUtils.swift; sourceTree = "<group>"; };
+		F4F4778627BF68CE007EC68D /* CLLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLLocationManager.swift; sourceTree = "<group>"; };
+		F4F4778827BF6C45007EC68D /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4F4778427BF6889007EC68D /* SwiftyJSON in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,10 +111,12 @@
 		F4C4298527BCAEE1007EACDC /* weather-ui */ = {
 			isa = PBXGroup;
 			children = (
-				F4C4298627BCAEE1007EACDC /* AppDelegate.swift */,
-				F4C4298827BCAEE1007EACDC /* SceneDelegate.swift */,
-				F4C4298A27BCAEE1007EACDC /* ViewController.swift */,
-				F4C4298C27BCAEE1007EACDC /* Main.storyboard */,
+				F4F4777727BF67BA007EC68D /* Core */,
+				F4F4777A27BF682E007EC68D /* Models */,
+				F4F4777627BF67A2007EC68D /* ViewModels */,
+				F4F4777427BF6792007EC68D /* Controllers */,
+				F4F4777D27BF684F007EC68D /* Services */,
+				F4F4778527BF68C1007EC68D /* Extensions */,
 				F4C4298F27BCAEE3007EACDC /* Assets.xcassets */,
 				F4C4299127BCAEE3007EACDC /* LaunchScreen.storyboard */,
 				F4C4299427BCAEE3007EACDC /* Info.plist */,
@@ -127,6 +141,57 @@
 			path = "weather-uiUITests";
 			sourceTree = "<group>";
 		};
+		F4F4777427BF6792007EC68D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F4C4298A27BCAEE1007EACDC /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		F4F4777627BF67A2007EC68D /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				F4F4777827BF67D0007EC68D /* HomeViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		F4F4777727BF67BA007EC68D /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				F4C4298627BCAEE1007EACDC /* AppDelegate.swift */,
+				F4C4298827BCAEE1007EACDC /* SceneDelegate.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		F4F4777A27BF682E007EC68D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F4F4777B27BF683F007EC68D /* Point.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F4F4777D27BF684F007EC68D /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				F4F4777E27BF6863007EC68D /* WeatherService.swift */,
+				F4F4778827BF6C45007EC68D /* Errors.swift */,
+				F4F4778027BF6871007EC68D /* ServiceUtils.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		F4F4778527BF68C1007EC68D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F4F4778627BF68CE007EC68D /* CLLocationManager.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,6 +208,9 @@
 			dependencies = (
 			);
 			name = "weather-ui";
+			packageProductDependencies = (
+				F4F4778327BF6889007EC68D /* SwiftyJSON */,
+			);
 			productName = "weather-ui";
 			productReference = F4C4298327BCAEE1007EACDC /* weather-ui.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +283,9 @@
 				Base,
 			);
 			mainGroup = F4C4297A27BCAEE1007EACDC;
+			packageReferences = (
+				F4F4778227BF6889007EC68D /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+			);
 			productRefGroup = F4C4298427BCAEE1007EACDC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -233,7 +304,6 @@
 			files = (
 				F4C4299327BCAEE3007EACDC /* LaunchScreen.storyboard in Resources */,
 				F4C4299027BCAEE3007EACDC /* Assets.xcassets in Resources */,
-				F4C4298E27BCAEE1007EACDC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,8 +329,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4C4298B27BCAEE1007EACDC /* ViewController.swift in Sources */,
+				F4F4777C27BF683F007EC68D /* Point.swift in Sources */,
+				F4F4778127BF6871007EC68D /* ServiceUtils.swift in Sources */,
 				F4C4298727BCAEE1007EACDC /* AppDelegate.swift in Sources */,
 				F4C4298927BCAEE1007EACDC /* SceneDelegate.swift in Sources */,
+				F4F4778727BF68CE007EC68D /* CLLocationManager.swift in Sources */,
+				F4F4777F27BF6863007EC68D /* WeatherService.swift in Sources */,
+				F4F4778927BF6C45007EC68D /* Errors.swift in Sources */,
+				F4F4777927BF67D0007EC68D /* HomeViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,14 +373,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		F4C4298C27BCAEE1007EACDC /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F4C4298D27BCAEE1007EACDC /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		F4C4299127BCAEE3007EACDC /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -442,9 +510,11 @@
 				DEVELOPMENT_TEAM = DQ7CFP6525;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "weather-ui/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Weather;
+				INFOPLIST_KEY_NSLocationUsageDescription = "We need location to find your areas weather.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need location to find your areas weather.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -452,7 +522,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.kaya.weather-ui";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kaya.weather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -470,9 +540,11 @@
 				DEVELOPMENT_TEAM = DQ7CFP6525;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "weather-ui/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Weather;
+				INFOPLIST_KEY_NSLocationUsageDescription = "We need location to find your areas weather.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need location to find your areas weather.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -480,7 +552,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.kaya.weather-ui";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kaya.weather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -624,6 +696,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F4F4778227BF6889007EC68D /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F4F4778327BF6889007EC68D /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F4F4778227BF6889007EC68D /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F4C4297B27BCAEE1007EACDC /* Project object */;
 }
