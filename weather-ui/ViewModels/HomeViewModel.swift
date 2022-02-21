@@ -1,24 +1,28 @@
 import CoreLocation
 import Foundation
+import Combine
 
 class HomeViewModel {
     private var apiService: WeatherService
-    
-    var onError: ((String) -> Void)?
+    @Published var forecast: Forecast?
+    @Published var error: String?
     
     init() {
         self.apiService = WeatherService()
     }
     
-    func loadContent(location: CLLocation) async {
+    public func fetchForecast(location: CLLocation) async {
         do {
-            try await apiService.getPoint(location: location.coordinate)
-        }
-        catch APIError.networkError {
-            onError?("Check your internet connection")
-        }
-        catch {
-            onError?("A problem occurred")
+            let myForecast = try await apiService.getForecast(location: location.coordinate)
+            print("update forecast")
+            self.forecast = myForecast
+            self.error = nil
+        } catch APIError.networkError {
+            self.error = "Check your internet connection"
+        } catch APIError.notValidLocationError {
+            self.error = "Check your location"
+        } catch {
+            self.error = "A problem occurred"
         }
     }
 }
