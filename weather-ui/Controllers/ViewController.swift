@@ -5,11 +5,11 @@
 //  Created by Ibrahim Berat Kaya on 15.02.2022.
 //
 
+import Combine
 import CoreLocation
 import UIKit
-import Combine
 
-class ViewController: UIViewController, CLLocationManagerDelegate {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     var locationStatus: CLAuthorizationStatus?
     var location: CLLocation?
@@ -17,38 +17,84 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     private var errorSub: AnyCancellable?
     var viewModel = HomeViewModel()
     
-    var textView: UILabel = {
+    var tableView: UITableView = {
+        var table = UITableView()
+        table.translatesAutoresizingMaskIntoConstraints = false
+        return table
+    }()
+    
+    var titleTextView: UILabel = {
         let uiLabel = UILabel()
         uiLabel.translatesAutoresizingMaskIntoConstraints = false
         uiLabel.numberOfLines = 999
-        uiLabel.font = uiLabel.font.withSize(12)
+        uiLabel.font = uiLabel.font.withSize(16)
         uiLabel.textAlignment = .center
+        uiLabel.backgroundColor = UIColor(red: 230/255, green: 220/255, blue: 255/255, alpha: 1)
         return uiLabel
     }()
     
-    override func viewDidLoad() {
+    override func loadView() {
+        super.loadView()
         locationManager.delegate = self
         view.backgroundColor = .white
-        view.addSubview(textView)
+        view.addSubview(tableView)
+        view.addSubview(titleTextView)
+
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "periodCell")
 
         NSLayoutConstraint.activate([
-            textView.heightAnchor.constraint(equalTo: view.heightAnchor),
-            textView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            titleTextView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            titleTextView.heightAnchor.constraint(equalToConstant: 240),
+            titleTextView.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -8),
+            titleTextView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8)
         ])
-        
         
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
         
         forecastSub = viewModel.$forecast.sink(receiveValue: { val in
-            print("$forecast", val)
             DispatchQueue.main.async {
-                self.textView.text = "\(val)"
+                self.tableView.reloadData()
+                self.titleTextView.text = val?.periods.first?.description
             }
         })
-        errorSub = viewModel.$error.sink(receiveValue: {err in
+        
+        errorSub = viewModel.$error.sink(receiveValue: { err in
             print("err", err)
         })
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let forecast = viewModel.forecast {
+            return forecast.periods.count - 1
+        }
+        return 0
+    }
+
+    // Provide a cell object for each row.
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // Fetch a cell of the appropriate type.
+        let cell = tableView.dequeueReusableCell(withIdentifier: "periodCell", for: indexPath)
+       
+        // Configure the cell’s contents.
+        var content = cell.defaultContentConfiguration()
+        content.text = self.viewModel.forecast?.periods[indexPath.row + 1].description
+        content.textProperties.color = .black
+        
+        cell.contentConfiguration = content
+        
+        return cell
+    }
+    
+    // method to run when table view cell is tapped
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("You tapped cell number \(indexPath.row).")
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
@@ -69,12 +115,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         Task {
             await viewModel.fetchForecast(location: loc)
         }
-    }
-    
-    func getLocationInfo(coordinates location: CLLocation) async {
-        do {
-            // try await WeatherService.getPoint(location: location.coordinate)
-        } catch {}
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
