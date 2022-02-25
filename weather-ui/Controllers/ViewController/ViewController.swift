@@ -23,36 +23,39 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return table
     }()
     
-    var titleTextView: UILabel = {
-        let uiLabel = UILabel()
-        uiLabel.translatesAutoresizingMaskIntoConstraints = false
-        uiLabel.numberOfLines = 999
-        uiLabel.font = uiLabel.font.withSize(16)
-        uiLabel.textAlignment = .center
-        uiLabel.backgroundColor = UIColor(red: 230/255, green: 220/255, blue: 255/255, alpha: 1)
-        return uiLabel
+    var forecaseDetailView: ForecaseDetailView = {
+        let forecastView = ForecaseDetailView()
+        forecastView.translatesAutoresizingMaskIntoConstraints = false
+        return forecastView
     }()
     
     override func loadView() {
         super.loadView()
-        locationManager.delegate = self
-        view.backgroundColor = .white
+        view.addSubview(forecaseDetailView)
+        print(forecaseDetailView)
         view.addSubview(tableView)
-        view.addSubview(titleTextView)
 
+        locationManager.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
+        
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "periodCell")
 
         NSLayoutConstraint.activate([
-            titleTextView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            titleTextView.heightAnchor.constraint(equalToConstant: 240),
-            titleTextView.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -8),
-            titleTextView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            forecaseDetailView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            forecaseDetailView.heightAnchor.constraint(equalToConstant: 240),
+            forecaseDetailView.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -8),
+            forecaseDetailView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            forecaseDetailView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8)
         ])
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .white
         
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
@@ -60,7 +63,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         forecastSub = viewModel.$forecast.sink(receiveValue: { val in
             DispatchQueue.main.async {
                 self.tableView.reloadData()
-                self.titleTextView.text = val?.periods.first?.description
+                self.forecaseDetailView.period = val?.periods.first
+                self.forecaseDetailView.setNeedsDisplay()
             }
         })
         
