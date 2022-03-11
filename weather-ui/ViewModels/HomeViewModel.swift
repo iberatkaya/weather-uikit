@@ -14,7 +14,6 @@ class HomeViewModel {
     public func fetchForecast(location: CLLocation) async {
         do {
             let myForecast = try await apiService.getForecast(location: location.coordinate)
-            print("update forecast")
             self.forecast = myForecast
             self.error = nil
         } catch APIError.networkError {

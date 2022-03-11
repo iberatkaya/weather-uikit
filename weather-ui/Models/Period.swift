@@ -2,7 +2,7 @@ import Foundation
 import SwiftyJSON
 
 struct Period: CustomStringConvertible {
-    init(number: Int? = nil, name: String? = nil, startTime: Date? = nil, endTime: Date? = nil, isDaytime: Bool? = nil, temperature: Double? = nil, temperatureUnit: String? = nil, temperatureTrend: String? = nil, windSpeed: String? = nil, windDirection: String? = nil, icon: String? = nil, shortForecast: String? = nil, detailedForecast: String? = nil) {
+    init(number: Int? = nil, name: String? = nil, startTime: Date? = nil, endTime: Date? = nil, isDaytime: Bool? = nil, temperature: Double? = nil, temperatureUnit: String? = nil, temperatureTrend: TemperatureTrend? = nil, windSpeed: String? = nil, windDirection: WindDirection? = nil, icon: String? = nil, shortForecast: String? = nil, detailedForecast: String? = nil) {
         self.number = number
         self.name = name
         self.startTime = startTime
@@ -32,9 +32,9 @@ struct Period: CustomStringConvertible {
         self.isDaytime = json["isDaytime"].bool
         self.temperature = json["temperature"].double
         self.temperatureUnit = json["temperatureUnit"].string
-        self.temperatureTrend = json["temperatureTrend"].string
+        self.temperatureTrend = TemperatureTrend(rawValue: json["temperatureTrend"].string ?? "")
         self.windSpeed = json["windSpeed"].string
-        self.windDirection = json["windDirection"].string
+        self.windDirection = WindDirection(rawValue: json["windDirection"].string ?? "")
         self.icon = json["icon"].string
         self.shortForecast = json["shortForecast"].string
         self.detailedForecast = json["detailedForecast"].string
@@ -47,9 +47,9 @@ struct Period: CustomStringConvertible {
     var isDaytime: Bool?
     var temperature: Double?
     var temperatureUnit: String?
-    var temperatureTrend: String?
+    var temperatureTrend: TemperatureTrend?
     var windSpeed: String?
-    var windDirection: String?
+    var windDirection: WindDirection?
     var icon: String?
     var shortForecast: String?
     var detailedForecast: String?

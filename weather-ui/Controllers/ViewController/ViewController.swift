@@ -32,7 +32,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func loadView() {
         super.loadView()
         view.addSubview(forecaseDetailView)
-        print(forecaseDetailView)
         view.addSubview(tableView)
 
         locationManager.delegate = self
@@ -62,8 +61,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         forecastSub = viewModel.$forecast.sink(receiveValue: { val in
             DispatchQueue.main.async {
+                print(val)
                 self.tableView.reloadData()
                 self.forecaseDetailView.period = val?.periods.first
+                self.forecaseDetailView.location = val?.point
                 self.forecaseDetailView.setNeedsDisplay()
             }
         })
@@ -97,7 +98,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     // method to run when table view cell is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("You tapped cell number \(indexPath.row).")
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
