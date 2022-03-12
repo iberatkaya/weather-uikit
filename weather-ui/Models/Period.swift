@@ -1,7 +1,7 @@
 import Foundation
 import SwiftyJSON
 
-struct Period: CustomStringConvertible {
+struct Period {
     init(number: Int? = nil, name: String? = nil, startTime: Date? = nil, endTime: Date? = nil, isDaytime: Bool? = nil, temperature: Double? = nil, temperatureUnit: String? = nil, temperatureTrend: TemperatureTrend? = nil, windSpeed: String? = nil, windDirection: WindDirection? = nil, icon: String? = nil, shortForecast: String? = nil, detailedForecast: String? = nil) {
         self.number = number
         self.name = name
@@ -53,11 +53,4 @@ struct Period: CustomStringConvertible {
     var icon: String?
     var shortForecast: String?
     var detailedForecast: String?
-    
-    var description: String {
-        var desc = "\(startTime?.formatted() ?? "Start"), \(endTime?.formatted() ?? "End")\n"
-        desc += "\(temperature ?? -1)°\(temperatureUnit ?? "?")\n"
-        desc += shortForecast ?? ""
-        return desc
-    }
 }

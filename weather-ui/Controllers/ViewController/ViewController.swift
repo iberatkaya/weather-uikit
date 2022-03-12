@@ -37,12 +37,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         locationManager.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "periodCell")
+        tableView.register(ForecaseCellView.self, forCellReuseIdentifier: "periodCell")
 
         NSLayoutConstraint.activate([
             forecaseDetailView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            forecaseDetailView.heightAnchor.constraint(equalToConstant: 240),
+            forecaseDetailView.heightAnchor.constraint(equalToConstant: 140),
             forecaseDetailView.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -8),
             forecaseDetailView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             forecaseDetailView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -84,14 +85,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // Provide a cell object for each row.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Fetch a cell of the appropriate type.
-        let cell = tableView.dequeueReusableCell(withIdentifier: "periodCell", for: indexPath)
-       
-        // Configure the cell’s contents.
-        var content = cell.defaultContentConfiguration()
-        content.text = self.viewModel.forecast?.periods[indexPath.row + 1].description
-        content.textProperties.color = .black
+        let cell = tableView.dequeueReusableCell(withIdentifier: "periodCell", for: indexPath) as! ForecaseCellView
         
-        cell.contentConfiguration = content
+        cell.period = self.viewModel.forecast?.periods[indexPath.item]
         
         return cell
     }

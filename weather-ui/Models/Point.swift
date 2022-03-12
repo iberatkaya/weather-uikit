@@ -1,6 +1,6 @@
 import SwiftyJSON
 
-struct Point: CustomStringConvertible {
+struct Point {
     init(city: String? = nil, state: String? = nil, timezone: String? = nil, gridId: String? = nil, lat: Double? = nil, long: Double? = nil, gridX: Int? = nil, gridY: Int? = nil) {
         self.city = city
         self.state = state
@@ -32,10 +32,4 @@ struct Point: CustomStringConvertible {
     var long: Double?
     var gridX: Int?
     var gridY: Int?
-    
-    var description: String {
-        var desc = "\(city ?? ""), \(state ?? "(State)")\n"
-        desc += "(\(lat ?? -1), \(long ?? -1))"
-        return desc
-    }
 }

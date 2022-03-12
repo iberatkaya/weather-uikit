@@ -9,9 +9,7 @@ class ForecaseDetailView: UIView {
     }
     
     required init?(coder: NSCoder) {
-        self.period = nil
         super.init(coder: coder)
-        setupView()
     }
     
     func setupView() {
@@ -46,7 +44,6 @@ class ForecaseDetailView: UIView {
             
             windDirection.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 12),
             windDirection.centerYAnchor.constraint(equalTo: windSpeedText.centerYAnchor),
-//            windDirection.trailingAnchor.constraint(equalTo: windSpeedText.leadingAnchor),
             windDirection.widthAnchor.constraint(equalToConstant: 24),
             windDirection.heightAnchor.constraint(equalToConstant: 24),
             
