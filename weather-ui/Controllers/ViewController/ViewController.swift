@@ -7,6 +7,7 @@
 
 import Combine
 import CoreLocation
+import NVActivityIndicatorView
 import UIKit
 
 class ViewController: UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate, CLLocationManagerDelegate {
@@ -40,7 +41,13 @@ class ViewController: UIViewController, UIPageViewControllerDataSource, UIPageVi
     private var forecastSub: AnyCancellable?
     private var errorSub: AnyCancellable?
     var viewModel = HomeViewModel()
-    private var tableViewController = TableViewController()
+    
+    private var tableViewController: TableViewController = {
+        let tableView = TableViewController()
+        tableView.view.translatesAutoresizingMaskIntoConstraints = false
+        return tableView
+    }()
+
     private var pages: [UIViewController] = []
     
     var forecaseDetailView: ForecaseDetailView = {
@@ -55,8 +62,28 @@ class ViewController: UIViewController, UIPageViewControllerDataSource, UIPageVi
         return pageView
     }()
     
+    var activityIndicator: NVActivityIndicatorView = {
+        let indicator = NVActivityIndicatorView(frame: CGRect.zero, type: .ballScaleRippleMultiple, color: UIColor(red: 105/255, green: 105/255, blue: 205/255, alpha: 1))
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.layer.zPosition = 1
+        return indicator
+    }()
+    
+    var forecastGraphController: ForecastGraphController = {
+        let graph = ForecastGraphController()
+        graph.view.translatesAutoresizingMaskIntoConstraints = false
+        return graph
+    }()
+    
     override func loadView() {
         super.loadView()
+        
+        activityIndicator.frame = CGRect(origin: view.center, size: CGSize(width: 100, height: 100))
+        
+        activityIndicator.startAnimating()
+        
+        view.addSubview(activityIndicator)
+        
         view.addSubview(forecaseDetailView)
         
         addChild(pageViewController)
@@ -68,11 +95,13 @@ class ViewController: UIViewController, UIPageViewControllerDataSource, UIPageVi
         pageViewController.dataSource = self
         pageViewController.delegate = self
         
-        pages = [tableViewController, UIViewController()]
+        pages = [tableViewController, forecastGraphController]
         
         pageViewController.setViewControllers([pages[0]], direction: .forward, animated: true)
         
         NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             forecaseDetailView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             forecaseDetailView.heightAnchor.constraint(equalToConstant: 140),
             forecaseDetailView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -82,7 +111,7 @@ class ViewController: UIViewController, UIPageViewControllerDataSource, UIPageVi
             pageViewController.view.topAnchor.constraint(equalTo: forecaseDetailView.bottomAnchor),
             pageViewController.view.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             pageViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
-            pageViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8)
+            pageViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
         ])
     }
     
@@ -95,10 +124,14 @@ class ViewController: UIViewController, UIPageViewControllerDataSource, UIPageVi
         
         forecastSub = viewModel.$forecast.sink(receiveValue: { val in
             DispatchQueue.main.async {
+                if self.activityIndicator.isAnimating {
+                    self.activityIndicator.stopAnimating()
+                }
                 self.tableViewController.forecast = val
                 self.forecaseDetailView.period = val?.periods.first
                 self.forecaseDetailView.location = val?.point
                 self.forecaseDetailView.setNeedsDisplay()
+                self.forecastGraphController.forecast = val
             }
         })
         

@@ -13,7 +13,7 @@ class TableViewController: UITableViewController {
         super.loadView()
         
         view.backgroundColor = .white
-        view.translatesAutoresizingMaskIntoConstraints = false
+
         self.tableView.translatesAutoresizingMaskIntoConstraints = false
 
         tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
