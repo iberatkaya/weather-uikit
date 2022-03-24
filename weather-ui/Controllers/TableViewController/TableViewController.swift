@@ -23,7 +23,7 @@ class TableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let myForecast = forecast {
-            return myForecast.periods.count - 1
+            return groupPeriodsByDate(myForecast.periods).count  - 1
         }
         return 0
     }
@@ -33,7 +33,9 @@ class TableViewController: UITableViewController {
         // Fetch a cell of the appropriate type.
         let cell = tableView.dequeueReusableCell(withIdentifier: "periodCell", for: indexPath) as! ForecaseCellView
         
-        cell.period = forecast?.periods[indexPath.item]
+        if let forecast = forecast {
+            cell.periods = groupPeriodsByDate(forecast.periods)[indexPath.item]
+        }
         
         return cell
     }

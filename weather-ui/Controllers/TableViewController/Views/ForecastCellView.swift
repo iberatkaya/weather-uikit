@@ -26,23 +26,27 @@ class ForecaseCellView: UITableViewCell {
             
             day.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 16),
             day.centerYAnchor.constraint(equalTo: centerYAnchor),
-        
+            
             temperature.leadingAnchor.constraint(equalTo: day.trailingAnchor, constant: 16),
             temperature.centerYAnchor.constraint(equalTo: centerYAnchor),
         ])
     }
     
     func setUI() {
-        if let temperature = period?.temperature {
-            setTemperatureText("\(Int(temperature))°")
+        if let temperatures = periods?.map({ $0.temperature }) {
+            if temperatures.count == 2 {
+                setTemperatureText("\(Int(temperatures[0]!))°/\(Int(temperatures[1]!))°")
+            }
+            else if temperatures.count == 1 {
+                setTemperatureText("\(Int(temperatures[0]!))°")
+            }
         }
         
-        if let date = period?.startTime {
+        if let date = periods?.first?.startTime {
             setDayText(date.dayOfWeek())
         }
     }
     
-
     let container: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
@@ -79,7 +83,7 @@ class ForecaseCellView: UITableViewCell {
         day.text = text
     }
     
-    var period: Period? {
+    var periods: [Period]? {
         didSet {
             setUI()
         }
