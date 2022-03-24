@@ -11,8 +11,8 @@ Weather App is a simple UIKit app that displays the weather forecast. The app is
 ## Screenshots
 
 <p>
-    <img alt="Screenshot" src="https://user-images.githubusercontent.com/34488374/159838637-03607b1b-83ad-4e6f-b8ea-14ac0acbd333.png" width="280"/>
     <img alt="Screenshot" src="https://user-images.githubusercontent.com/34488374/159838639-52c4cb9c-d9a1-49ee-b3b9-4af2a628352a.png" width="280"/>
+    <img alt="Screenshot" src="https://user-images.githubusercontent.com/34488374/159838637-03607b1b-83ad-4e6f-b8ea-14ac0acbd333.png" width="280"/>
 </p>
 
 
